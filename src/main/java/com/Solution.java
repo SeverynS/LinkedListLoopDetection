@@ -1,16 +1,20 @@
 package com;
 
-import com.models.ListNode;
+import com.models.Lists;
+import java.util.HashSet;
 
 public class Solution {
-    public static boolean hasCycle(ListNode head) {
-        int position = 0;
-
+    public static boolean hasCycle(Lists.Node head) {
+        HashSet<Lists.Node> headLinks = new HashSet<>();
+        if(head == null){
+            return false;
+        }
         while(head.next != null){
-            if(position <= position - 1){
+            if(headLinks.contains(head.next)){
                 return true;
             }
-            position ++;
+            headLinks.add(head.next);
+            head = head.next;
         }
         return false;
     }
